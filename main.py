@@ -4,7 +4,7 @@ import pygame
 pygame.init()
 
 
-class Balle_reobondissante:
+class Ball:
     def __init__(self, x, y, vx, vy, coef_rebondissement, win_size_, color):
         self.x = x
         self.y = y
@@ -40,12 +40,6 @@ class Balle_reobondissante:
             self.y = self.win_size[1] - 10
             self.vy *= -self.coef_rebondissement
 
-
-
-
-
-
-
     def draw(self, window_):
 
         pygame.draw.circle(window_, self.color, (int(self.x), int(self.y)), 10)
@@ -80,21 +74,16 @@ def create_all_colors(nb_colors):
         colors_.append((r, g, b))
 
     return colors_
-
-
-
-
+    
 
 win_size = (1000, 1000)
 window = pygame.display.set_mode(win_size)
-
 
 # creates balls
 balls = []
 nb_balls = 50000
 colors = create_all_colors(nb_balls)
 for count in range(nb_balls):
-
     angle_count = 360 / nb_balls
     vx, vy = convert_angle_to_vx_vy(angle_count*count)
     vx *= 1000
@@ -102,10 +91,8 @@ for count in range(nb_balls):
 
     print(vx, vy)
 
-    ball = Balle_reobondissante(500, 500, vx, vy, 1, win_size, (colors[count][0], colors[count][1], colors[count][2]))
+    ball = Ball(500, 500, vx, vy, 1, win_size, (colors[count][0], colors[count][1], colors[count][2]))
     balls.append(ball)
-
-
 
 run = True
 count = 0
